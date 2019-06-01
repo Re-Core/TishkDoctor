@@ -91,6 +91,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <EditText
+            android:id="@+id/popupOpeningHour"
+            android:textSize="22sp"
+            android:padding="6dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:hint="Opening hour"
+            android:background="@drawable/form_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:padding="6dp"
             android:gravity="center"

@@ -21,7 +21,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AppointmentDetailActivity extends AppCompatActivity {
 
     private CircleImageView imgDoctorProfile;
-    private TextView txtDoctorName,txtDoctorSpeciality,txtPhone,txtMail,txtaddress,txtTime,txtDate;
+    private TextView txtDoctorName,txtDoctorSpeciality,txtPhone,txtMail,txtaddress,txtTime,txtDate,txtMedicalBackground,txtCurrentProblem;
 
     private String appointmentId, doctorId;
 
@@ -57,6 +57,8 @@ public class AppointmentDetailActivity extends AppCompatActivity {
         txtDate=(TextView)findViewById(R.id.txtDate);
         txtTime=(TextView)findViewById(R.id.txtTime);
         txtaddress=(TextView)findViewById(R.id.txtAddress);
+        txtMedicalBackground=(TextView)findViewById(R.id.txtMedicalBackground);
+        txtCurrentProblem=(TextView)findViewById(R.id.txtCurrentProblem);
 
         getAppointmentData();
 
@@ -99,6 +101,13 @@ public class AppointmentDetailActivity extends AppCompatActivity {
                     if (dataSnapshot.child("phone").exists()) {
                         String phone = dataSnapshot.child("phone").getValue().toString();
                         txtPhone.setText(phone);
+                    }if(dataSnapshot.child("medicalBackground").exists()){
+                        String medicalBackground =dataSnapshot.child("medicalBackground").getValue().toString();
+                        txtMedicalBackground.setText("medical background: "+medicalBackground);
+
+                    }if(dataSnapshot.child("currentProblem").exists()){
+                        String currentProblem =dataSnapshot.child("currentProblem").getValue().toString();
+                        txtCurrentProblem.setText("my problem: "+currentProblem);
                     }
                 }
             }

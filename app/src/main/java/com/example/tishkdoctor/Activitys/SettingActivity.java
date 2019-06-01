@@ -58,7 +58,7 @@ public class SettingActivity extends AppCompatActivity {
     private CircleImageView profileImg;
 
     private Button btnUpdateProfile;
-    private EditText edtMail,edtMobile,edtEducation,edtWork,edtBirthday,docNameS;
+    private EditText edtMail,edtMobile,edtEducation,edtWork,edtBirthday,docNameS,docOpningHour;
     private MaterialSpinner spinnerGender, spinnerDoctorType,spinnerCity;
     private String gender="",marriage="",city="",docName;
     private String doctorType="Surgeon";
@@ -126,6 +126,7 @@ public class SettingActivity extends AppCompatActivity {
         edtWork=(EditText)findViewById(R.id.popupWork);
         edtBirthday=(EditText)findViewById(R.id.popupBirthday);
         docNameS=(EditText)findViewById(R.id.popupName);
+        docOpningHour=(EditText)findViewById(R.id.popupOpeningHour);
         profileImg=(CircleImageView)findViewById(R.id.settingImg);
 
         userProfileDisplay(profileImg,edtMail,edtMobile,edtBirthday,edtEducation,edtWork,docNameS);
@@ -274,6 +275,7 @@ public class SettingActivity extends AppCompatActivity {
         userMap.put("location",city);
         userMap.put("name",docNameS.getText().toString());
         userMap.put("doctorId",currentUserId);
+        userMap.put("openingHour",docOpningHour.getText().toString());
 
         databaseReference.child(currentUserId).removeValue();
 
@@ -356,6 +358,7 @@ public class SettingActivity extends AppCompatActivity {
                                 userMap. put("doctorImg", myUrl);
                                 userMap.put("name",docNameS.getText().toString());
                                 userMap.put("doctorId",currentUserId);
+                                userMap.put("openingHour",docOpningHour.getText().toString());
 
                                 ref.child(currentUserId).removeValue();
                                 ref.child(doctorType).child(currentUserId).updateChildren(userMap);
@@ -428,6 +431,9 @@ public class SettingActivity extends AppCompatActivity {
                     } if (dataSnapshot.child("name").exists()){
                         String name=dataSnapshot.child("name").getValue().toString();
                         DocNameS.setText(name);
+                    }if (dataSnapshot.child("openingHour").exists()){
+                        String openingHour =dataSnapshot.child("openingHour").getValue().toString();
+                        docOpningHour.setText(openingHour);
                     }
                 }
 

@@ -47,7 +47,7 @@ public class ProfileFragment extends Fragment {
     private ImageView edtProfile;
 
     private TextView txtName,txtMail,txtGender,txtEducation,txtMobile,
-            txtWork,txtDateOfBirth,txtCity;
+            txtWork,txtDateOfBirth,txtCity,txtOpening;
     private String bloodGroup="",education="",work="",gender="",marriage="",dateOfBirth="",city="";
     private String doctorType="Surgeon";
 
@@ -78,6 +78,8 @@ public class ProfileFragment extends Fragment {
 
         txtCity=(TextView)v.findViewById(R.id.location);
         edtProfile=(ImageView)v.findViewById(R.id.edit);
+
+        txtOpening=(TextView)v.findViewById(R.id.txtOpeningHour);
 
         doctorType=getDoctorType();
         profileImg=(CircleImageView)v.findViewById(R.id.profile);
@@ -191,6 +193,9 @@ public class ProfileFragment extends Fragment {
                     if (dataSnapshot.child("name").exists()){
                         String CityS=dataSnapshot.child("name").getValue().toString();
                         name.setText(CityS);
+                    }if (dataSnapshot.child("openingHour").exists()){
+                        String openingHourS=dataSnapshot.child("openingHour").getValue().toString();
+                        txtOpening.setText(openingHourS);
                     }
                 }
 
